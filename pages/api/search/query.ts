@@ -76,7 +76,9 @@ export default async function handler(
         }
       }
     }
-  } catch (e) {}
+  } catch (e) {
+    console.error("ai", e);
+  }
 
   /** if have results directly from first results, get from google **/
   //@ts-ignore
@@ -84,13 +86,17 @@ export default async function handler(
     try {
       //@ts-ignore
       await ftsToGoogleQuery(answers, answers[0].fts);
-    } catch (e) {}
+    } catch (e) {
+      console.error("goo", e);
+    }
   }
 
   /** get more answers from database **/
   try {
     await getMoreAnswersFromDatabase(answers, query);
-  } catch (e) {}
+  } catch (e) {
+    console.error("more answer", e);
+  }
 
   /** prepare output **/
   const output = await formatOutput(answers, query);
