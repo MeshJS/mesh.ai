@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-const gDescription = "Cardano AI Search Engine and Mesh Assistant.";
+const gDescription = "Mesh AI - Cardano AI Search Engine and Mesh Assistant.";
 const gKeywords =
   "ai, gpt, chat, developer, tools, cardano, blockchain, sdk, plutus, crypto, web3, apis";
 
@@ -12,7 +12,7 @@ const Metatags = ({ title, keywords, description, image }) => {
     keywords = gKeywords;
   }
 
-  title = title + " - Mesh AI";
+  title = title;
 
   return (
     <Head>
@@ -24,7 +24,7 @@ const Metatags = ({ title, keywords, description, image }) => {
       <meta name="keywords" content={keywords} />
       <meta name="description" content={description} />
 
-      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@meshsdk" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
@@ -36,7 +36,7 @@ const Metatags = ({ title, keywords, description, image }) => {
 
       <meta property="og:title" content={title} />
       <meta property="og:type" content="article" />
-      <meta property="og:site_name" content="Mesh Playground" />
+      <meta property="og:site_name" content="Mesh AI" />
       <meta property="og:description" content={description} />
       {image && (
         <meta property="og:image" content={`https://meshjs.dev${image}`} />
