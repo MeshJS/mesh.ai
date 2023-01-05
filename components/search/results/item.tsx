@@ -18,7 +18,7 @@ export default function SearchResultItem({ answer }) {
   const { setShowDrawer } = useSearch();
 
   let canVote = false;
-  if (session) {
+  if (session && answer.category != "mesh") {
     canVote = true;
   }
   let canExpand = false;

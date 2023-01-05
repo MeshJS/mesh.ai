@@ -8,9 +8,13 @@ export default function ItemHeader({ setShowDrawer, answer, canExpand }) {
 
   return (
     <div className="flex flex-col">
-      <button onClick={() => setShowDrawer(answer)}>
+      {canExpand ? (
+        <button onClick={() => setShowDrawer(answer)}>
+          <h2 className={styleClass}>{answer.question}</h2>
+        </button>
+      ) : (
         <h2 className={styleClass}>{answer.question}</h2>
-      </button>
+      )}
       {answer.link && (
         <a
           href={answer.link}
