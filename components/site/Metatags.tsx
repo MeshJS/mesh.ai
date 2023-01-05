@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-const gDescription = "Mesh AI - Cardano AI Search Engine and Mesh Assistant.";
+const gDescription = "Cardano AI Search Engine and Mesh Assistant.";
 const gKeywords =
   "ai, gpt, chat, developer, tools, cardano, blockchain, sdk, plutus, crypto, web3, apis";
 
@@ -12,7 +12,7 @@ const Metatags = ({ title, keywords, description, image }) => {
     keywords = gKeywords;
   }
 
-  title = title;
+  // title = title;
 
   return (
     <Head>
@@ -73,7 +73,7 @@ const Metatags = ({ title, keywords, description, image }) => {
 };
 
 Metatags.defaultProps = {
-  title: "Mesh AI - " + gDescription,
+  title: "Mesh AI",
   keywords: gKeywords,
   description: gDescription,
   image: "/logo-mesh/mesh.png",
