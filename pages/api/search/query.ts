@@ -148,6 +148,8 @@ async function ftsToGoogleQuery(answers, fts) {
           let snippetArray = result.snippet.split("...");
           if (snippetArray.length == 3) {
             answerText += `<p>${snippetArray[1].trim()}</p>`;
+          } else if (snippetArray.length == 2 && snippetArray[0].length == 13) {
+            answerText += `<p>${snippetArray[1].trim()}</p>`;
           } else {
             answerText += `<p>${result.snippet}</p>`;
           }

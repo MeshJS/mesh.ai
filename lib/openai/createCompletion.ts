@@ -6,15 +6,25 @@ const samples = [
     completion:
       "Cardano blockchain, a first-of-its-kind decentralised network based completely on scientific and mathematical principles and designed by experts in cryptography and engineering.",
   },
+  // {
+  //   prompt: "Cardano blockchain architecture?",
+  //   completion:
+  //     "The Cardano blockchain consists of two core components: The Cardano Settlement Layer (CSL) and Cardano Computational Layer (CCL). The Cardano open-source code is written using Haskell, a universally recognised and secure programming language.",
+  // },
+  // {
+  //   prompt: "Who created Cardano?",
+  //   completion:
+  //     "In the early days of Ethereum, one of its co-founders, Charles Hoskinson, saw the need for a more standardised, and scalable blockchain. With his mathematics background, Hoskinson began thinking about more scientific ways to build a blockchain. During this time, Hoskinson connected with a former co-worker at Ethereum, Jeremy Wood, who was looking to create a better blockchain and smart contracts platform. The two began to create Cardano as it exists today.",
+  // },
   {
-    prompt: "Cardano blockchain architecture?",
+    prompt: "Who created Mesh? When was it started?",
     completion:
-      "The Cardano blockchain consists of two core components: The Cardano Settlement Layer (CSL) and Cardano Computational Layer (CCL). The Cardano open-source code is written using Haskell, a universally recognised and secure programming language.",
+      "Jingles and Abdelkrim started Mesh development in July 2022. First version was released on 22 Sept 2022.",
   },
   {
-    prompt: "Who created Cardano?",
+    prompt: "What is Mesh the developer tool for Cardano?",
     completion:
-      "In the early days of Ethereum, one of its co-founders, Charles Hoskinson, saw the need for a more standardised, and scalable blockchain. With his mathematics background, Hoskinson began thinking about more scientific ways to build a blockchain. During this time, Hoskinson connected with a former co-worker at Ethereum, Jeremy Wood, who was looking to create a better blockchain and smart contracts platform. The two began to create Cardano as it exists today.",
+      "Mesh is an open-source library providing numerous tools to easily build dApps on the Cardano blockchain.",
   },
 ];
 
