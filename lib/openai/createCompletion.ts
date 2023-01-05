@@ -34,7 +34,7 @@ const samples = [
 ];
 
 export async function createCompletion(prompt) {
-  let thisPrompt = `I am a highly intelligent question answering bot. You can ask me anything about Cardano. If you ask me a question that is rooted in truth, I will give you the answer. If you ask me a question that is nonsense, trickery, or has no clear answer, I will respond with something interesting.\n\n`; // If you ask me a question that is nonsense, trickery, or has no clear answer, I will respond with "Unknown".
+  let thisPrompt = `I am a highly intelligent question answering bot. You can ask me anything about Cardano. If you ask me a question that is rooted in truth, I will give you the answer. If you ask me a question that is nonsense, trickery, or has no clear answer, I will try to respond your question in Cardano context.\n\n`; // If you ask me a question that is nonsense, trickery, or has no clear answer, I will respond with "Unknown".
 
   let startPrompt = `Human: `;
   let endPrompt = `\n###\n`;
