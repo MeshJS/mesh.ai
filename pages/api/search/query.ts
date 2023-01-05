@@ -11,6 +11,11 @@ import { Answer } from "types";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { hashCode } from "utils/hashCode";
 import { removeNonAlphanumeric } from "utils/removeNonAlphanumeric";
+import { googleQuery } from "@lib/google";
+import {
+  insertSearchQuery,
+  searchSearchQuery,
+} from "@lib/supabase/google_search_queries";
 
 export default async function handler(
   req: NextApiRequest,
@@ -51,28 +56,109 @@ export default async function handler(
       if (responseOpenAi.choices.length > 0) {
         const responseText = responseOpenAi.choices[0].text!.trim();
         if (responseText != "Unknown.") {
-          const newAnswer = await insertAnswer({
-            question: query,
-            answer: responseText,
-            question_hash: queryHash,
-          });
-          answers.push(newAnswer);
+          const newAnswer = await insertAnswer([
+            {
+              question: query,
+              answer: responseText,
+              question_hash: queryHash,
+              category: "ai",
+            },
+          ]);
+          if (newAnswer[0]) {
+            answers.push(newAnswer[0]);
+          }
         }
       }
     }
   }
 
-  /** get more answers from database **/
-  const answersFromDatabase: Answer[] = await searchAnswers({ query: query });
-  answers.push(...answersFromDatabase);
+  /** if have results directly from first results, get from google **/
+  //@ts-ignore
+  if (answers[0] && answers[0].fts) {
+    try {
+      //@ts-ignore
+      await ftsToGoogleQuery(answers, answers[0].fts);
+    } catch (e) {}
+  }
 
+  /** get more answers from database **/
+  await getMoreAnswersFromDatabase(answers, query);
+
+  /** prepare output **/
+  const output = await formatOutput(answers, query);
+
+  res.status(200).json(output);
+}
+
+async function formatOutput(answers, query) {
   /** remove duplicates **/
   const filteredAnswers = answers.filter(
     (value, index, self) =>
       index === self.findIndex((t) => t.question_hash === value.question_hash)
   );
-
+  /** count number of records from database **/
   const numberAnswers = await countAnswers({ query: query });
 
-  res.status(200).json({ answers: filteredAnswers, numberAnswers });
+  return { answers: filteredAnswers, numberAnswers };
+}
+
+async function getMoreAnswersFromDatabase(answers, query) {
+  const answersFromDatabase: Answer[] = await searchAnswers({ query: query });
+  answers.push(...answersFromDatabase);
+}
+
+async function ftsToGoogleQuery(answers, fts) {
+  const myArray = fts.split(" ");
+  let queryArray = myArray.map((keywordPair, i) => {
+    return removeNonAlphanumeric(keywordPair.split(":")[0]);
+  });
+  let query = queryArray.join(" ");
+
+  const existQuery = await searchSearchQuery({ query });
+
+  if (existQuery.length > 0) {
+    return true;
+  }
+
+  let thisquery = {
+    query: query,
+  };
+  const savedQueryToDb = await insertSearchQuery(thisquery);
+
+  if (savedQueryToDb) {
+    console.log("query google", query);
+
+    const res = await googleQuery({ q: query });
+
+    let answersToDatabase = [];
+    if (res.status == 200) {
+      for (let i in res.data.items) {
+        let result = res.data.items[i];
+        let answerText = "";
+        if (result?.pagemap?.metatags[0]) {
+          if (result?.pagemap?.metatags[0]["og:description"]) {
+            answerText += `<p>${result?.pagemap?.metatags[0]["og:description"]}</p>`;
+          }
+        }
+        answerText += `<p>${result.snippet}</p>`;
+
+        const queryHash = hashCode(
+          removeNonAlphanumeric(result.title.toLowerCase())
+        );
+
+        let answer = {
+          question: result.title,
+          answer: answerText,
+          category: "goo",
+          link: result.link,
+          question_hash: queryHash,
+        };
+        //@ts-ignore
+        answersToDatabase.push(answer);
+      }
+
+      const newAnswer = await insertAnswer(answersToDatabase);
+      answers.push(...newAnswer);
+    }
+  }
 }

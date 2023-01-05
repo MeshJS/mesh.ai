@@ -8,7 +8,6 @@ import useUser from "@contexts/user";
 import ProfileImage from "@components/user/profileImage";
 import Drawer from "@components/ui/drawer";
 import { XMarkIcon } from "@heroicons/react/24/solid";
-import { updateUserProfile } from "@lib/supabase";
 
 export default function Navbar() {
   const router = useRouter();
@@ -27,6 +26,7 @@ export default function Navbar() {
               <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white hidden sm:block">
                 Mesh AI
               </span>
+              <span className="text-sm text-gray-500">(beta)</span>
             </a>
             <div className="flex-1 max-w-screen-lg">
               {router.pathname !== "/" && <SearchInputNavbar />}

@@ -18,6 +18,7 @@ const UserContext = createContext<{
 }>({
   user: undefined,
   updateProfile: (user: {}) => true,
+  //@ts-ignore
   getUser: (uid: string) => {},
   allUsers: [],
 });
@@ -48,16 +49,17 @@ export const UserProvider = ({ children }) => {
 
   async function updateProfile(updatedProfile) {
     const res = await updateUserProfile(updatedProfile);
+    //@ts-ignore
     setUser(res[0]);
     return true;
   }
 
   async function getUserProfileInner(uid) {
     if (refUsers.current[uid] === false) {
-      console.log("getting user", uid);
+      // console.log("getting user", uid);
       const res = await getUserProfile(uid);
       if (res) {
-        console.log("gotten user", res);
+        // console.log("gotten user", res);
         refUsers.current[uid] = res;
         setAllUsers(refUsers.current);
       }
@@ -84,6 +86,7 @@ export const UserProvider = ({ children }) => {
   );
 
   return (
+    //@ts-ignore
     <UserContext.Provider value={memoedValue}>{children}</UserContext.Provider>
   );
 };

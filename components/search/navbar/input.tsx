@@ -23,7 +23,7 @@ export default function SearchInputNavbar() {
   useEffect(() => {
     setuserquery(router.query.q ? router.query.q.toString() : "");
     if (router.query.q && lastSearchQuery != router.query.q && !loading) {
-      performQuery(router.query.q);
+      performQuery(router.query.q as string);
     }
   }, [router.isReady]);
 

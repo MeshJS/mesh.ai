@@ -9,15 +9,15 @@ const getPagination = (page, size) => {
   return { from, to };
 };
 
-export async function insertAnswer(answer: Answer): Promise<Answer> {
+export async function insertAnswer(answer: Answer[]): Promise<Answer[]> {
   const { data, error } = await supabase
     .from("answers")
-    .insert(answer)
+    .upsert(answer)
     .select();
   if (error) {
     console.error(error);
   }
-  return data![0];
+  return data!;
 }
 
 export async function searchAnswers({

@@ -1,10 +1,15 @@
 import Button from "@components/ui/button";
 import useSearch from "@contexts/search";
-import { HandThumbDownIcon, HandThumbUpIcon } from "@heroicons/react/24/solid";
+import {
+  ArrowTopRightOnSquareIcon,
+  HandThumbDownIcon,
+  HandThumbUpIcon,
+} from "@heroicons/react/24/solid";
 import { userVoteAnswer } from "@lib/supabase";
 import { useSession } from "@supabase/auth-helpers-react";
 import { useState } from "react";
 import DisplayMeshAnswer from "./displayMeshAnswer";
+import ItemHeader from "./itemHeader";
 
 export default function SearchResultItem({ answer }) {
   const session = useSession();
@@ -12,13 +17,17 @@ export default function SearchResultItem({ answer }) {
   const [voted, setVoted] = useState(undefined);
   const { setShowDrawer } = useSearch();
 
-  let canVoteAndExpand = false;
-  if (session && answer.category != "mesh") {
-    canVoteAndExpand = true;
+  let canVote = false;
+  if (session) {
+    canVote = true;
+  }
+  let canExpand = false;
+  if (answer.category != "mesh") {
+    canExpand = true;
   }
 
   async function vote(vote) {
-    if (canVoteAndExpand) {
+    if (session && canVote) {
       const res = await userVoteAnswer({
         answerId: answer.id,
         vote: vote,
@@ -51,7 +60,7 @@ export default function SearchResultItem({ answer }) {
         </div> */}
 
         <div>
-          {canVoteAndExpand ? (
+          {/* {canExpand ? (
             <button onClick={() => setShowDrawer(answer)}>
               <h2
                 className={`text-2xl font-bold tracking-tight text-black dark:text-white mb-4 text-left underline`}
@@ -65,9 +74,14 @@ export default function SearchResultItem({ answer }) {
             >
               {answer.question}
             </h2>
-          )}
+          )} */}
+          <ItemHeader
+            setShowDrawer={setShowDrawer}
+            answer={answer}
+            canExpand={canExpand}
+          />
         </div>
-        {canVoteAndExpand && (
+        {canVote && (
           <div
             className={`flex items-center gap-2 ${!showSubmenu && "invisible"}`}
           >
@@ -91,7 +105,11 @@ export default function SearchResultItem({ answer }) {
         {answer.category == "mesh" ? (
           <DisplayMeshAnswer answer={answer} />
         ) : (
-          <p className="text-lg">{answer.answer}</p>
+          // <p className="text-lg">{answer.answer}</p>
+          <div
+            className="text-lg"
+            dangerouslySetInnerHTML={{ __html: answer.answer }}
+          />
         )}
       </div>
     </article>

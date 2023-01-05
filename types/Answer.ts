@@ -4,4 +4,5 @@ export type Answer = {
   answer: string;
   category?: string;
   question_hash: number;
+  link?: string;
 };

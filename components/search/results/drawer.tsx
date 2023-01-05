@@ -2,7 +2,6 @@ import Button from "@components/ui/button";
 import ProfileImage from "@components/user/profileImage";
 import useSearch from "@contexts/search";
 import {
-  ChatBubbleLeftEllipsisIcon,
   CheckIcon,
   PencilSquareIcon,
   XMarkIcon,
@@ -15,11 +14,11 @@ import { useSession } from "@supabase/auth-helpers-react";
 import { useEffect, useState } from "react";
 import { dateToString } from "utils/dateToString";
 import DisplayMeshAnswer from "./displayMeshAnswer";
-
 import dynamic from "next/dynamic";
 import { insertAnswerEdited } from "@lib/supabase/answers_edited";
 import Drawer from "@components/ui/drawer";
 import useUser from "@contexts/user";
+import ItemHeader from "./itemHeader";
 var TextEditor = dynamic(() => import("@components/ui/textEditor"), {
   ssr: false,
 });
@@ -30,9 +29,11 @@ export default function AnswerDrawer() {
   return (
     <>
       <Drawer showDrawer={showDrawer}>
-        <h2 className="text-2xl font-bold tracking-tight text-black dark:text-white mb-4">
+        {/* <h2 className="text-2xl font-bold tracking-tight text-black dark:text-white mb-4">
           {showDrawer?.question}
-        </h2>
+        </h2> */}
+
+        <ItemHeader setShowDrawer={{}} answer={showDrawer} canExpand={false} />
 
         <div className="absolute top-2.5 right-2.5">
           <button
@@ -133,17 +134,22 @@ function AnswerBody({ answer }) {
         </>
       ) : (
         <>
-          <div className="">{answer.answer}</div>
-          <button
-            type="button"
-            className={`mt-4 flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400 ${
-              !showEditing && "invisible"
-            }`}
-            onClick={() => editThisAnswer()}
-          >
-            <PencilSquareIcon className="mr-1 w-4 h-4" />
-            Edit this answer
-          </button>
+          <div
+            className="text-lg"
+            dangerouslySetInnerHTML={{ __html: answer.answer }}
+          />
+          {session && (
+            <button
+              type="button"
+              className={`mt-4 flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400 ${
+                !showEditing && "invisible"
+              }`}
+              onClick={() => editThisAnswer()}
+            >
+              <PencilSquareIcon className="mr-1 w-4 h-4" />
+              Edit this answer
+            </button>
+          )}
         </>
       )}
     </div>
@@ -170,7 +176,7 @@ function Discussion() {
       console.log("newDiscussion", newDiscussion);
       const res = await insertDiscussion(newDiscussion);
       if (res) {
-        console.log("res", res);
+        //@ts-ignore
         setReplies([...replies, res[0]]);
         setUserComment("");
       }
@@ -182,6 +188,7 @@ function Discussion() {
     setReplies([]);
     async function get() {
       const res = await getDiscussions(showDrawer?.id);
+      //@ts-ignore
       setReplies(res);
     }
     if (showDrawer) {
@@ -192,11 +199,13 @@ function Discussion() {
   return (
     <section className="bg-white dark:bg-gray-900 lg:py-4">
       <div className="max-w-2xl mx-auto px-4">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
-            Discussion ({replies.length})
-          </h2>
-        </div>
+        {(session || replies.length > 0) && (
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
+              Discussion ({replies.length})
+            </h2>
+          </div>
+        )}
 
         {session && (
           <div className="mb-6">
@@ -222,6 +231,7 @@ function Discussion() {
 
         {replies
           .sort((a, b) => {
+            //@ts-ignore
             return new Date(b.created_at) - new Date(a.created_at);
           })
           .map((reply, i) => {

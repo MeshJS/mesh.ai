@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react";
 export default function TextEditor({
   value,
   onChange,
-  className = undefined,
+  className,
   options = {},
 }) {
   // const [editor, setEditor] = useState<any>();
@@ -34,10 +34,13 @@ export default function TextEditor({
 
   useEffect(() => {
     medium.current = new MediumEditor(container.current, options);
+    //@ts-ignore
     medium.current.subscribe("editableInput", (e) => {
+      //@ts-ignore
       change(container.current.innerHTML);
     });
     return () => {
+      //@ts-ignore
       medium.current.destroy();
     };
   }, []);
@@ -62,22 +65,10 @@ export default function TextEditor({
 
   return (
     <>
-      {/* <div
-        className="px-0 w-full prose text-gray-900 bg-gray-50 border-0 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400 outline-none h-48 overflow-y-auto"
-        ref={onRefChange}
-      ></div> */}
-      {/* <div>
-        <Editor
-          // className="px-0 w-full prose text-gray-900 bg-gray-50 border-0 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400 outline-none h-48 overflow-y-auto"
-          className="outline-none"
-          text={value}
-          onChange={handleChange}
-          options={options}
-        />
-      </div> */}
       <div
         className={thisClassName}
         dangerouslySetInnerHTML={{ __html: t }}
+        //@ts-ignore
         ref={container}
       />
     </>
