@@ -7,7 +7,7 @@ import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
 import useUser from "@contexts/user";
 import ProfileImage from "@components/user/profileImage";
 import Drawer from "@components/ui/drawer";
-import { XMarkIcon } from "@heroicons/react/24/solid";
+import { QuestionMarkCircleIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 
 export default function Navbar() {
@@ -36,6 +36,13 @@ export default function Navbar() {
             <div className="flex-1 hidden lg:block"></div>
 
             <div className="flex items-center lg:order-2">
+              <Link href={`/about`}>
+                <div className="p-2 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700">
+                  <span className="sr-only">Apps</span>
+                  <QuestionMarkCircleIcon className="w-6 h-6" />
+                </div>
+              </Link>
+
               {/* <button
                 type="button"
                 data-dropdown-toggle="apps-dropdown"

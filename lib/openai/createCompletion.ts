@@ -22,9 +22,14 @@ const samples = [
       "Jingles and Abdelkrim started Mesh development in July 2022. First version was released on 22 Sept 2022.",
   },
   {
-    prompt: "What is Mesh the developer tool for Cardano?",
+    prompt: "What is Mesh?",
     completion:
       "Mesh is an open-source library providing numerous tools to easily build dApps on the Cardano blockchain.",
+  },
+  {
+    prompt: "Developer tool for Cardano?",
+    completion:
+      "Get started building blockchain applications with enterprise-ready, well engineered, and professionally designed SDK, Mesh.",
   },
 ];
 

@@ -67,6 +67,21 @@ export async function getAnswerByHash({
   return data as Answer[];
 }
 
+export async function searchAnswerByFts({
+  query,
+}: {
+  query: string;
+}): Promise<Answer[]> {
+  query = query.split(" ").join(" & ");
+
+  const { data, error } = await supabase
+    .from("view_answers")
+    .select()
+    .textSearch("fts", query);
+
+  return data ? data : [];
+}
+
 export async function userVoteAnswer({
   answerId,
   vote,

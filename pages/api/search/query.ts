@@ -5,6 +5,7 @@ import {
   countAnswers,
   getAnswerByHash,
   insertAnswer,
+  searchAnswerByFts,
   searchAnswers,
 } from "@lib/supabase";
 import { Answer } from "types";
@@ -29,7 +30,10 @@ export default async function handler(
   query = query.trim();
   const queryHash = hashCode(removeNonAlphanumeric(query.toLowerCase()));
 
-  const existingAnswers = await getAnswerByHash({ hash: queryHash });
+  // const existingAnswers = await getAnswerByHash({ hash: queryHash });
+  // answers.push(...existingAnswers);
+
+  const existingAnswers = await searchAnswerByFts({ query });
   answers.push(...existingAnswers);
 
   try {

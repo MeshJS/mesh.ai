@@ -17,7 +17,7 @@ export default function SearchResults() {
   }
 
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row mb-8">
       <div className="hidden lg:block flex-none w-48"></div>
       <div className="flex-1 w-64">
         <AnswerDrawer />
@@ -27,11 +27,12 @@ export default function SearchResults() {
           })}
           <Pagination />
         </div>
-        {
-          searchResults.length == 0 && (
-            <p>No Results</p>
-          )
-        }
+        {searchResults.length == 0 && (
+          <p>
+            Your search query did not match any documents, the AI doesn't know
+            what you are searching for.
+          </p>
+        )}
       </div>
       <div className="hidden lg:block flex-1"></div>
     </div>
