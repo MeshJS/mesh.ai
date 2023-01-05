@@ -8,6 +8,7 @@ import useUser from "@contexts/user";
 import ProfileImage from "@components/user/profileImage";
 import Drawer from "@components/ui/drawer";
 import { XMarkIcon } from "@heroicons/react/24/solid";
+import Link from "next/link";
 
 export default function Navbar() {
   const router = useRouter();
@@ -17,7 +18,7 @@ export default function Navbar() {
       <nav className="border-gray-200 px-4 lg:px-6 py-2.5 fixed z-30 w-full border-b dark:border-gray-700 bg-white/80 backdrop-blur dark:bg-gray-800/80">
         <div className="flex flex-wrap justify-between items-center">
           <div className="flex justify-start items-center w-full">
-            <a href="/" className="flex mr-4">
+            <Link href="/" className="flex mr-4 cursor-pointer">
               <img
                 src="https://meshjs.dev/logo-mesh/black/logo-mesh-black-64x64.png"
                 className="mr-3 h-8"
@@ -27,7 +28,7 @@ export default function Navbar() {
                 Mesh AI
               </span>
               <span className="text-sm text-gray-500">(beta)</span>
-            </a>
+            </Link>
             <div className="flex-1 max-w-screen-lg">
               {router.pathname !== "/" && <SearchInputNavbar />}
             </div>
