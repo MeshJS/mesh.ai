@@ -32,45 +32,47 @@ export default async function handler(
   const existingAnswers = await getAnswerByHash({ hash: queryHash });
   answers.push(...existingAnswers);
 
-  if (existingAnswers.length === 0) {
-    /** get from open AI **/
-    if (query.includes("mesh")) {
-      const responseOpenAi = await createCompletionMesh(query);
-      if (responseOpenAi.choices!.length > 0) {
-        // const newAnswer = await insertAnswer({
-        //   question: query,
-        //   answer: dataToMesh(responseOpenAi.choices![0].text!),
-        //   question_hash: queryHash,
-        //   category: "mesh",
-        // });
-        const newAnswer = {
-          question: query,
-          answer: dataToMesh(responseOpenAi.choices![0].text!),
-          question_hash: queryHash,
-          category: "mesh",
-        };
-        answers.push(newAnswer);
-      }
-    } else {
-      const responseOpenAi = await createCompletion(query);
-      if (responseOpenAi.choices.length > 0) {
-        const responseText = responseOpenAi.choices[0].text!.trim();
-        if (responseText != "Unknown.") {
-          const newAnswer = await insertAnswer([
-            {
-              question: query,
-              answer: responseText,
-              question_hash: queryHash,
-              category: "ai",
-            },
-          ]);
-          if (newAnswer[0]) {
-            answers.push(newAnswer[0]);
+  try {
+    if (existingAnswers.length === 0) {
+      /** get from open AI **/
+      if (query.includes("mesh")) {
+        const responseOpenAi = await createCompletionMesh(query);
+        if (responseOpenAi.choices!.length > 0) {
+          // const newAnswer = await insertAnswer({
+          //   question: query,
+          //   answer: dataToMesh(responseOpenAi.choices![0].text!),
+          //   question_hash: queryHash,
+          //   category: "mesh",
+          // });
+          const newAnswer = {
+            question: query,
+            answer: dataToMesh(responseOpenAi.choices![0].text!),
+            question_hash: queryHash,
+            category: "mesh",
+          };
+          answers.push(newAnswer);
+        }
+      } else {
+        const responseOpenAi = await createCompletion(query);
+        if (responseOpenAi.choices.length > 0) {
+          const responseText = responseOpenAi.choices[0].text!.trim();
+          if (responseText != "Unknown.") {
+            const newAnswer = await insertAnswer([
+              {
+                question: query,
+                answer: responseText,
+                question_hash: queryHash,
+                category: "ai",
+              },
+            ]);
+            if (newAnswer[0]) {
+              answers.push(newAnswer[0]);
+            }
           }
         }
       }
     }
-  }
+  } catch (e) {}
 
   /** if have results directly from first results, get from google **/
   //@ts-ignore
@@ -82,7 +84,9 @@ export default async function handler(
   }
 
   /** get more answers from database **/
-  await getMoreAnswersFromDatabase(answers, query);
+  try {
+    await getMoreAnswersFromDatabase(answers, query);
+  } catch (e) {}
 
   /** prepare output **/
   const output = await formatOutput(answers, query);
@@ -126,7 +130,7 @@ async function ftsToGoogleQuery(answers, fts) {
   const savedQueryToDb = await insertSearchQuery(thisquery);
 
   if (savedQueryToDb) {
-    console.log("query google", query);
+    console.log("query.ts google", query);
 
     const res = await googleQuery({ q: query });
 
@@ -140,7 +144,16 @@ async function ftsToGoogleQuery(answers, fts) {
             answerText += `<p>${result?.pagemap?.metatags[0]["og:description"]}</p>`;
           }
         }
-        answerText += `<p>${result.snippet}</p>`;
+        if (result.snippet.includes("...")) {
+          let snippetArray = result.snippet.split("...");
+          if (snippetArray.length == 3) {
+            answerText += `<p>${snippetArray[1].trim()}</p>`;
+          } else {
+            answerText += `<p>${result.snippet}</p>`;
+          }
+        } else {
+          answerText += `<p>${result.snippet}</p>`;
+        }
 
         const queryHash = hashCode(
           removeNonAlphanumeric(result.title.toLowerCase())
