@@ -306,7 +306,7 @@ const samples = [
 
 /**
  * good test case
- * send 55 ADA, 67g3c03j909, h8gd23hd7189h3 to $bob, and send 88 ada to $cc
+ * mesh send 55 ADA, assetABC, and 88 ADA to $alice, addrABC and $bob respectively
  */
 
 export async function createCompletionMesh(prompt) {

@@ -28,7 +28,7 @@ function Page() {
                 a specific role.
               </p>
               <p>
-                The very first model is tasked to understand your search intend.
+                The very first model is tasked to understand your search intent.
                 Is it a technical question about Mesh? Is it a question about
                 Cardano? Or is it a general question which can be about
                 anything?
