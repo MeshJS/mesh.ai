@@ -31,7 +31,7 @@ export function Hero() {
         Discord integrated AI to learn knowledge about your community and answer questions in real time.
       </p>
       <div className="mt-10 flex justify-center gap-x-6">
-        <Button href="https://discord.com/api/oauth2/authorize?client_id=1091605083621441606&permissions=68672&scope=bot">Install Mesh AI on Discord</Button>
+        <Button href="https://discord.com/api/oauth2/authorize?client_id=1091605083621441606&permissions=68672&scope=bot%20applications.commands">Install Mesh AI on Discord</Button>
         {/* <Button
           href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
           variant="outline"
