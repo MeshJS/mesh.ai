@@ -38,7 +38,13 @@ export function Button({
   )
 
   return href ? (
-    <Link href={href} className={className} {...props} />
+    <Link
+      href={href}
+      rel="noreferrer"
+      target="_blank"
+      className={className}
+      {...props}
+    />
   ) : (
     <button className={className} {...props} />
   )

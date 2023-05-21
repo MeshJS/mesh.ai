@@ -7,33 +7,34 @@ import { Container } from '@/components/Container'
 import backgroundImage from '@/images/background-features.jpg'
 
 import sampleImage from '@/images/sample_image.jpeg'
-import imageDiscordAskQuestion from '@/images/screenshots/discord-ask-question.png'
-
+import imageAskQuestion from '@/images/features/ask-anything.png'
+import imageFineTune from '@/images/features/fine-tune.png'
+import imageUpToDate from '@/images/features/up-to-date.png'
 
 const features = [
   {
-    title: 'Ask anything',
+    title: 'Ask anything about your community',
     description:
-      "Let community members ask questions in your Discord server and get answers from past questions.",
-    image: imageDiscordAskQuestion,
-  },
-  {
-    title: 'Reinforcement learning',
-    description:
-      "Replies from the community will be added as training data to train model for future questions.",
-    image: sampleImage,
+      'Let community members ask questions in your Discord server and get answers from past questions.',
+    image: imageAskQuestion,
   },
   {
     title: 'Fine-tune your knowledge base',
     description:
-      "We provide dashboard for you to access and control what gets into training dataset.",
-    image: sampleImage,
+      "Simply reply to bot's answer to add more information to the knowledge base. Instantly updated knowledge base.",
+    image: imageFineTune,
   },
   {
     title: 'Community learning',
     description:
-      'Thumbs ups are signals to determine if responses is good, and replies can be upvoted to be used as training data.',
+      'Emojis are signals to determine if responses is good, and replies can be upvoted to be used as training data.',
     image: sampleImage,
+  },
+  {
+    title: 'Always up-to-date knowledge base',
+    description:
+      'Unlike other generative models, Mesh AI is up to date and continue to learn from your community over time.',
+    image: imageUpToDate,
   },
 ]
 
@@ -75,7 +76,8 @@ export function PrimaryFeatures() {
             The AI Agent for your Discord community
           </h2>
           <p className="mt-6 text-lg tracking-tight text-blue-100">
-            It learns and improve the knowledge base over time, and you have full control over it!
+            It learns and improve the knowledge base over time, and you have
+            full control over it!
           </p>
         </div>
         <Tab.Group

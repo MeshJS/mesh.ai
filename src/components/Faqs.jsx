@@ -13,7 +13,7 @@ const faqs = [
     {
       question: 'Can I train the knowledge base?',
       answer:
-        'Absolutely! All replies, thumbs up and thumbs down are used to train the knowledge base. Just use Discord how you used to!',
+        'Absolutely! All replies, thumbs up and thumbs down (a total of 20 emojis) are used to train the knowledge base. Just use Discord how you used to!',
     },
     //   {
     //     question: 'How do I apply for a job at TaxPal?',
@@ -55,6 +55,40 @@ const faqs = [
     //     answer:
     //       'Send us an email and we will send you a copy of our latest password spreadsheet so you can find your information.',
     //   },
+  ],
+  [
+    {
+      question: 'How this project is developed?',
+      answer: (
+        <>
+          This project is developed by{' '}
+          <a href="https://jingles.dev/" rel="noreferrer" target="_blank">
+            Jingles
+          </a>{' '}
+          from{' '}
+          <a href="https://meshjs.dev/" rel="noreferrer" target="_blank">
+            Mesh SDK
+          </a>{' '}
+          and supported by Felix Weber from Catayst Swarm.
+        </>
+      ),
+    },
+    {
+      question: 'How this project is funded?',
+      answer: (
+        <>
+          This project is funded by Deep Funding, you can check the{' '}
+          <a
+            href="https://deepfunding.ai/proposal/gpt-for-snet-cardano/"
+            rel="noreferrer"
+            target="_blank"
+          >
+            proposal here
+          </a>
+          .
+        </>
+      ),
+    },
   ],
 ]
 

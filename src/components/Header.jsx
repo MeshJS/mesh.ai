@@ -9,6 +9,12 @@ import { Container } from '@/components/Container'
 import { NavLink } from '@/components/NavLink'
 import meshlogo from '@/images/logo-mesh-black-128x128.png'
 
+const menu_items = [
+  { href: '#features', label: 'Features' },
+  { href: '#guides', label: 'Guides' },
+  { href: '#roadmap', label: 'Roadmap' },
+  // { href: '#faq', label: 'FAQ' },
+]
 function MobileNavLink({ href, children }) {
   return (
     <Popover.Button as={Link} href={href} className="block w-full p-2">
@@ -78,11 +84,16 @@ function MobileNavigation() {
             as="div"
             className="absolute inset-x-0 top-full mt-4 flex origin-top flex-col rounded-2xl bg-white p-4 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5"
           >
-            <MobileNavLink href="#features">Features</MobileNavLink>
+            {menu_items.map((item, i) => (
+              <MobileNavLink key={i} href={item.href}>
+                {item.label}
+              </MobileNavLink>
+            ))}
+            {/* <MobileNavLink href="#features">Features</MobileNavLink>
             <MobileNavLink href="#testimonials">Testimonials</MobileNavLink>
             <MobileNavLink href="#pricing">Pricing</MobileNavLink>
             <hr className="m-2 border-slate-300/40" />
-            <MobileNavLink href="/login">Sign in</MobileNavLink>
+            <MobileNavLink href="/login">Sign in</MobileNavLink> */}
           </Popover.Panel>
         </Transition.Child>
       </Transition.Root>
@@ -96,7 +107,7 @@ export function Header() {
       <Container>
         <nav className="relative z-50 flex justify-between">
           <div className="flex items-center md:gap-x-12">
-            <Link href="#" aria-label="Home">
+            <Link href="/" aria-label="Home">
               {/* <Logo className="h-10 w-auto" /> */}
               <Image
                 className="h-10 w-auto"
@@ -106,9 +117,14 @@ export function Header() {
               />
             </Link>
             <div className="hidden md:flex md:gap-x-6">
-              <NavLink href="#features">Features</NavLink>
-              {/* <NavLink href="#testimonials">Roadmap</NavLink> */}
-              <NavLink href="#faq">FAQ</NavLink>
+              {menu_items.map((item, i) => (
+                <NavLink key={i} href={item.href}>
+                  {item.label}
+                </NavLink>
+              ))}
+              {/* <NavLink href="#features">Features</NavLink>
+              <NavLink href="#roadmap">Roadmap</NavLink>
+              <NavLink href="#faq">FAQ</NavLink> */}
             </div>
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">
