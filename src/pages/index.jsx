@@ -11,6 +11,7 @@ import { SecondaryFeatures } from '@/components/SecondaryFeatures'
 import { Testimonials } from '@/components/Testimonials'
 import { Tasks } from '@/components/Tasks'
 import Guides from '@/components/Guides'
+import Funded from '@/components/Funded'
 
 export default function Home() {
   return (
@@ -34,6 +35,7 @@ export default function Home() {
         <Pricing /> */}
 
         {/* <Faqs /> */}
+        <Funded />
       </main>
       <Footer />
     </>

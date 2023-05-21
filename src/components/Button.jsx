@@ -40,8 +40,8 @@ export function Button({
   return href ? (
     <Link
       href={href}
-      rel="noreferrer"
-      target="_blank"
+      // rel="noreferrer"
+      // target="_blank"
       className={className}
       {...props}
     />
