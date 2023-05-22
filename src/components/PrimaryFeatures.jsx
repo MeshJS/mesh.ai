@@ -6,10 +6,10 @@ import clsx from 'clsx'
 import { Container } from '@/components/Container'
 import backgroundImage from '@/images/background-features.jpg'
 
-import sampleImage from '@/images/sample_image.jpeg'
-import imageAskQuestion from '@/images/features/ask-anything.png'
-import imageFineTune from '@/images/features/fine-tune.png'
-import imageUpToDate from '@/images/features/up-to-date.png'
+import imageAskQuestion from '@/images/meshai/ask-anything.png'
+import imageFineTune from '@/images/meshai/fine-tune.png'
+import imageUpToDate from '@/images/meshai/up-to-date.png'
+import imageReplyuser from '@/images/meshai/replyuser.png'
 
 const features = [
   {
@@ -21,14 +21,14 @@ const features = [
   {
     title: 'Fine-tune your knowledge base',
     description:
-      "Simply reply to bot's answer to add more information to the knowledge base. Instantly updated knowledge base.",
+      "There are 3 ways to fine-tune the knowledge base, which will instantly update knowledge base. Learn more from the guides.",
     image: imageFineTune,
   },
   {
     title: 'Community learning',
     description:
       'Emojis are signals to determine if responses is good, and replies can be upvoted to be used as training data.',
-    image: sampleImage,
+    image: imageReplyuser,
   },
   {
     title: 'Always up-to-date knowledge base',

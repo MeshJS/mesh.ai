@@ -42,7 +42,7 @@ const tasks = [
     desc: 'After the service is launched, it will need to be maintained and supported to ensure that it continues to function properly and to address any issues that arise.',
   },
   {
-    title: 'Monitor And Measure Performance',
+    title: '🧑‍💻 Monitor And Measure Performance',
     desc: 'Regular monitoring of the service performance and usage is important to measure the success of the service and make any necessary adjustments.',
   },
 ]

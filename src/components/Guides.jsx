@@ -1,38 +1,34 @@
 import { Button } from '@/components/Button'
 import Image from 'next/image'
-import imageInitMesh from '@/images/docs/initmesh.png'
-import imageAskquestion from '@/images/docs/askquestion.png'
-import imageTrain from '@/images/docs/train.png'
+import imageInitMesh from '@/images/meshai/initmesh.png'
+import imageAskquestion from '@/images/meshai/askquestion.png'
+import imageTrain from '@/images/meshai/train.png'
+import imageFineTune from '@/images/meshai/fine-tune.png'
+import imageReplyuser from '@/images/meshai/replyuser.png'
 
 export default function Guides() {
   return (
-  
-      <section
-        id="guides"
-        className="relative overflow-hidden bg-slate-50"
-      >
-        <div className="relative isolate overflow-hidden bg-white py-24">
-      <div
-        className="absolute -top-80 left-[max(6rem,33%)] -z-10 transform-gpu blur-3xl sm:left-1/2 md:top-20 lg:ml-20 xl:top-3 xl:ml-56"
-        aria-hidden="true"
-      >
+    <section id="guides" className="relative overflow-hidden bg-slate-50">
+      <div className="relative isolate overflow-hidden bg-white py-24">
         <div
-          className="aspect-[801/1036] w-[50.0625rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"
-          style={{
-            clipPath:
-              'polygon(63.1% 29.6%, 100% 17.2%, 76.7% 3.1%, 48.4% 0.1%, 44.6% 4.8%, 54.5% 25.4%, 59.8% 49.1%, 55.3% 57.9%, 44.5% 57.3%, 27.8% 48%, 35.1% 81.6%, 0% 97.8%, 39.3% 100%, 35.3% 81.5%, 97.2% 52.8%, 63.1% 29.6%)',
-          }}
-        />
-      </div>
-      <div className="px-6 py-32 lg:px-8">
+          className="absolute -top-80 left-[max(6rem,33%)] -z-10 transform-gpu blur-3xl sm:left-1/2 md:top-20 lg:ml-20 xl:top-3 xl:ml-56"
+          aria-hidden="true"
+        >
+          <div
+            className="aspect-[801/1036] w-[50.0625rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"
+            style={{
+              clipPath:
+                'polygon(63.1% 29.6%, 100% 17.2%, 76.7% 3.1%, 48.4% 0.1%, 44.6% 4.8%, 54.5% 25.4%, 59.8% 49.1%, 55.3% 57.9%, 44.5% 57.3%, 27.8% 48%, 35.1% 81.6%, 0% 97.8%, 39.3% 100%, 35.3% 81.5%, 97.2% 52.8%, 63.1% 29.6%)',
+            }}
+          />
+        </div>
+        <div className="px-6 py-32 lg:px-8">
           <GetStarted />
           <AskQuestions />
           <FineTune />
         </div>
       </div>
-        
-      </section>
- 
+    </section>
   )
 }
 
@@ -159,10 +155,6 @@ function FineTune() {
           2. Reply to Mesh AI's message and react to it
         </h2>
 
-        {/* <p className="my-4">
-          You can reply to Mesh AI's message and react to it to provide feedback
-          on the answer.
-        </p> */}
         <p className="my-4">
           First, you reply to Mesh AI's message with the correct answer.
         </p>
@@ -182,6 +174,14 @@ function FineTune() {
           Mesh AI will add your reply into the knowledge base.
         </p>
 
+        <Image
+          className="rounded-lg bg-gray-50 object-cover"
+          src={imageFineTune}
+          width={768}
+          height={512}
+          alt=""
+        />
+
         <h2 className="my-4 text-2xl font-bold tracking-tight text-gray-900">
           3. React to a user's message that replied to another user's message
         </h2>
@@ -194,9 +194,24 @@ function FineTune() {
         <p className="my-4">👍 ✅ 💯 🔥 ❤️ 🙌 💪 🙏 👏 👌</p>
 
         <p className="my-4">
-          Mesh AI will add a 👍 reaction and add the reply into the knowledge
-          base.
+          Mesh AI then will add a 👍 reaction and add the reply into the
+          knowledge base.
         </p>
+
+        <Image
+          className="rounded-lg bg-gray-50 object-cover"
+          src={imageReplyuser}
+          width={768}
+          height={512}
+          alt=""
+        />
+
+        <p className="my-4">
+          Note that, these are a list of negative emojis that you can use to
+          indicate that a response is bad:
+        </p>
+
+        <p className="my-4">👎 🥶 😱 😵‍💫 😵 😡 🤬 🤮 🤢 👿</p>
       </div>
     </div>
   )
