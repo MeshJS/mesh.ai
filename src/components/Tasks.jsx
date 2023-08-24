@@ -26,7 +26,7 @@ const tasks = [
     desc: 'For serving responses and collecting data feedback.',
   },
   {
-    title: '🧑‍💻 Testing And Debugging',
+    title: '✅ Testing And Debugging',
     desc: 'The integration would need to be thoroughly tested and any bugs or issues would need to be identified and fixed. Note that this is ongoing process and this work will last as long as the service is up.',
   },
   {
@@ -34,7 +34,7 @@ const tasks = [
     desc: 'Once the integration has been tested and debugged, it can be deployed to the Discord servers where it will be used',
   },
   {
-    title: '🧑‍💻 User Documentation And Training',
+    title: '✅ User Documentation And Training',
     desc: 'Detailed documentation and user guides would need to be created to help community members understand how to use the service, and training would need to be provided to help community members get the most out of the service.',
   },
   {
@@ -42,7 +42,7 @@ const tasks = [
     desc: 'After the service is launched, it will need to be maintained and supported to ensure that it continues to function properly and to address any issues that arise.',
   },
   {
-    title: '🧑‍💻 Monitor And Measure Performance',
+    title: 'Monitor And Measure Performance',
     desc: 'Regular monitoring of the service performance and usage is important to measure the success of the service and make any necessary adjustments.',
   },
 ]

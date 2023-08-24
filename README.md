@@ -1,35 +1,31 @@
-# Salient
+# Mesh AI - Knowledge made accessible on Cardano.
 
-Salient is a [Tailwind UI](https://tailwindui.com) site template built using [Tailwind CSS](https://tailwindcss.com) and [Next.js](https://nextjs.org).
+Discord integrated AI to learn knowledge about your community and answer questions in real time.
 
-## Getting started
+## Features
 
-To get started with this template, first install the npm dependencies:
+#### Ask anything about your community
 
-```bash
-npm install
-```
+Let community members ask questions in your Discord server and get answers from past questions.
 
-Next, run the development server:
+#### Fine-tune your knowledge base
 
-```bash
-npm run dev
-```
+There are 3 ways to fine-tune the knowledge base, which will instantly update knowledge base. Learn more from the guides.
 
-Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
+#### Community learning
 
-## Customizing
+Emojis are signals to determine if responses is good, and replies can be upvoted to be used as training data.
 
-You can start editing this template by modifying the files in the `/src` folder. The site will auto-update as you edit these files.
+#### Always up-to-date knowledge base
 
-## License
+Unlike other generative models, Mesh AI is up to date and continue to learn from your community over time.
 
-This site template is a commercial product and is licensed under the [Tailwind UI license](https://tailwindui.com/license).
+## Get Started
 
-## Learn more
+To get started, simply [invite Mesh AI](https://discord.com/api/oauth2/authorize?client_id=1091605083621441606&permissions=85056&scope=applications.commands%20bot) to your Discord server.
 
-To learn more about the technologies used in this site template, see the following resources:
+Check the [guides](https://ai.meshjs.dev/#guides) for more information.
 
-- [Tailwind CSS](https://tailwindcss.com/docs) - the official Tailwind CSS documentation
-- [Next.js](https://nextjs.org/docs) - the official Next.js documentation
-- [Headless UI](https://headlessui.dev) - the official Headless UI documentation
+## Supported by
+
+Deep Funding and Catalyst Swarm
